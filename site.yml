@@ -1,0 +1,17 @@
+
+---  
+- hosts: all
+  remote_user: root
+  gather_facts: false
+  pre_tasks:
+  - name: Install Python
+    raw: sudo apt-get -y install python-simplejson
+  - name: Import SSL
+    raw: python -c "import ssl"
+
+  roles: 
+   - docker
+   - install_k8s
+   - configure_k8s
+   - helm
+   - output
